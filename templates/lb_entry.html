@@ -1,0 +1,18 @@
+{% block lb_entry %}
+<div class="leaderboard-entry">
+    <div class="rank">{{ loop.index0 + 1 }}</div>
+    <div class="avatar">
+        <!-- TODO: User entry.avatar to display avatar from entry object -->
+        <img
+            src="/static/images/avatars/{{ entry.avatar_image }}"
+            alt="{{ entry.name }}"
+        />
+
+        <!-- <img src="/static/images/avatar_dog.jpg" alt="Avatar" />
+        -->
+    </div>
+    <div class="name">{{ entry.display_name }}</div>
+    <div class="points">{{ entry.xp }}</div>
+    <div class="sun-icon">☀️</div>
+</div>
+{% endblock %}
