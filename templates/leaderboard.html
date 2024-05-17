@@ -1,0 +1,43 @@
+{% extends "base.html" %} {% block title %} Leaderboard {% endblock %} {% block
+content %}
+<div class="container">
+    <div class="header">
+        <div class="title">LEADERBOARDS</div>
+        <div class="frame">
+            <img src="/static/images/scene.jpg" alt="Framed Image" />
+        </div>
+        <!-- 
+        <div class="date">
+            <div class="date-circle">MAY<br />46</div>
+            <div class="time-left">15 Days 8h</div>
+        </div>
+        -->
+    </div>
+
+    <div class="tabs">
+        <button class="tab-button active">THIS MONTH</button>
+        <button class="tab-button">ALL TIME</button>
+    </div>
+    <div class="location-tabs">
+        <button class="location-button active">World</button>
+        <button class="location-button">British Columbia</button>
+    </div>
+
+    <ul id="leaderboard">
+        <!-- prettier-ignore -->
+        {% for entry in leaderboard_data %} {% set context = {'entry': entry,
+        'index': loop.index0, 'page': page} %} {% include "lb_entry.html" %} {%
+        endfor %}
+    </ul>
+    <footer>
+        <div class="footer-content">
+            <a href="/home"
+                ><img src="/static/images/applestore.svg" alt="apple store"
+            /></a>
+            <a href="/home"
+                ><img src="/static/images/googleplay.png" alt="apple store"
+            /></a>
+        </div>
+    </footer>
+</div>
+{% endblock %}
