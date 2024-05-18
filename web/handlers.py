@@ -1,7 +1,13 @@
 from aiohttp import web
 import aiohttp
-import asyncio
 import aiohttp_jinja2
+from dotenv import load_dotenv
+
+import os
+
+load_dotenv()
+
+API_BASE_URL = os.getenv("API_BASE_URL")
 
 
 @aiohttp_jinja2.template("leaderboard.html")
@@ -11,8 +17,31 @@ async def index(request):
     leaderboard_data = None
     async with aiohttp.ClientSession() as session:
         async with session.get(
-            f"https://api.wordcraft.gg/api/top-xp?count={count}&page={page}"
+            f"{API_BASE_URL}/top-xp?count={count}&page={page}"
         ) as response:
             leaderboard_data = await response.json()
-            print(leaderboard_data)
     return {"leaderboard_data": leaderboard_data, "page": 1}
+
+
+async def get_leaderboard_page(request):
+    leaderboard_data = None
+    count = request.query.get("count", 10)
+    page = request.query.get("page", 2)
+    async with aiohttp.ClientSession() as session:
+        async with session.get(
+            f"{API_BASE_URL}/top-xp?count={count}&page={page}"
+        ) as response:
+            leaderboard_data = await response.json()
+
+    rendered_entries = [
+        aiohttp_jinja2.render_string(
+            "lb_entry.html",
+            request,
+            {"entry": entry, "page": int(page), "loop": {"index0": index}},
+        )
+        for index, entry in enumerate(leaderboard_data)
+    ]
+
+    rendered_leaderboard = "".join(rendered_entries)
+
+    return web.Response(text=rendered_leaderboard, content_type="text/html")
