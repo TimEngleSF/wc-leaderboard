@@ -14,17 +14,12 @@ content %}
         -->
     </div>
 
-    <div class="tabs">
-        <button class="tab-button active">THIS MONTH</button>
-        <button class="tab-button">ALL TIME</button>
-    </div>
     <div class="location-tabs">
         <button class="location-button active">World</button>
         <button class="location-button">British Columbia</button>
     </div>
 
     <ul id="leaderboard">
-        <!-- prettier-ignore -->
         {% for entry in leaderboard_data %} {% set context = {'entry': entry,
         'index': loop.index0, 'page': page} %} {% include "lb_entry.html" %} {%
         endfor %}
@@ -35,7 +30,7 @@ content %}
                 ><img src="/static/images/applestore.svg" alt="apple store"
             /></a>
             <a href="/home"
-                ><img src="/static/images/googleplay.png" alt="apple store"
+                ><img src="/static/images/googleplay.png" alt="google play"
             /></a>
         </div>
     </footer>
