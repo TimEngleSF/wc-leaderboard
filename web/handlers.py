@@ -10,7 +10,7 @@ load_dotenv()
 API_BASE_URL = os.getenv("API_BASE_URL")
 
 
-@aiohttp_jinja2.template("leaderboard.html")
+@aiohttp_jinja2.template("content.html")
 async def index(request):
     page = 1
     count = 10
