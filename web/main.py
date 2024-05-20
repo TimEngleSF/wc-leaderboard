@@ -3,7 +3,7 @@ import aiohttp_jinja2
 import jinja2
 
 from settings import BASE_DIR
-from handlers import index, get_leaderboard_page
+from handlers import index, get_leaderboard_page, get_leaderboard_time
 
 app = web.Application()
 app.router.add_static("/static/", path=str(BASE_DIR / "static"), name="static")
@@ -12,6 +12,7 @@ app.add_routes(
     [
         web.get("/", index),
         web.get("/leaderboard", get_leaderboard_page),
+        web.get("/leaderboard/t/{page}", get_leaderboard_time),
     ]
 )
 

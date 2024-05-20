@@ -20,7 +20,7 @@ async def index(request):
             f"{API_BASE_URL}/top-xp?count={count}&page={page}"
         ) as response:
             leaderboard_data = await response.json()
-    return {"leaderboard_data": leaderboard_data, "page": 1}
+    return {"leaderboard_data": leaderboard_data, "page": 1, "active_tab": "month"}
 
 
 async def get_leaderboard_page(request):
@@ -45,3 +45,13 @@ async def get_leaderboard_page(request):
     rendered_leaderboard = "".join(rendered_entries)
 
     return web.Response(text=rendered_leaderboard, content_type="text/html")
+
+
+@aiohttp_jinja2.template("tabs.html")
+async def get_leaderboard_time(request):
+    active_tab = request.match_info.get("page", "month")
+    # leaderboard_data = None
+    # async with aiohttp.ClientSession() as session:
+    #     async with session.get(f"{API_BASE_URL}/top-xp?count=10&page=1") as response:
+    #         leaderboard_data = await response.json()
+    return {"active_tab": active_tab}
