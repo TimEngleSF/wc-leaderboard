@@ -59,7 +59,7 @@ This is a web application that displays a dynamic leaderboard, allowing users to
 1. **Start the server**
 
     ```bash
-    python app.py
+    python web/main.py
     ```
 
 2. **Open your browser and navigate to**
