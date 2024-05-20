@@ -1,12 +1,5 @@
 {% extends "base.html" %} {% block title %} Leaderboard {% endblock %} {% block
-content %}
-
-<div class="location-tabs">
-    <button class="location-button active">World</button>
-    <button class="location-button">British Columbia</button>
-</div>
-
-{% set active_tab = active_tab %} {% include "tabs.html" %}
+content %} {% set active_tab = active_tab %} {% include "tabs.html" %}
 
 <ul id="leaderboard">
     {% for entry in leaderboard_data %} {% set context = {'entry': entry,
