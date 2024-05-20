@@ -6,6 +6,8 @@ content %}
     <button class="location-button">British Columbia</button>
 </div>
 
+{% set active_tab = active_tab %} {% include "tabs.html" %}
+
 <ul id="leaderboard">
     {% for entry in leaderboard_data %} {% set context = {'entry': entry,
     'index': loop.index0, 'page': page} %} {% include "lb_entry.html" %} {%

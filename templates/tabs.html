@@ -1,0 +1,23 @@
+<div id="tab-container">
+    {% if active_tab == 'month' %}
+    <button class="tab active">THIS MONTH</button>
+    <button
+        class="tab"
+        hx-get="/leaderboard/t/all"
+        hx-target="#tab-container"
+        hx-swap="outerHTML"
+    >
+        ALL TIME
+    </button>
+    {% else %}
+    <button
+        class="tab"
+        hx-get="/leaderboard/t/month"
+        hx-target="#tab-container"
+        hx-swap="outerHTML"
+    >
+        THIS MONTH
+    </button>
+    <button class="tab active">ALL TIME</button>
+    {% endif %}
+</div>
